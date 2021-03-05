@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.style.guide.web.dao.user.UserMapper">
+
+    <!-- 通用增删改查命名统一 insert插入新数据、update选择性修改数据，delete删除一行数据，list查询多行 -->
+    <!-- SQL关键字大写，字段、表名小写，不同语义时换行 -->
+
+    <!-- insert操作需要返回主键情况设置useGeneratedKeys、keyProperty可将生成的ID注入到PO中 -->
+    <insert id="insert" keyColumn="user_id" keyProperty="userId"
+            parameterType="com.style.guide.web.model.domain.UserDO" useGeneratedKeys="true">
+        INSERT INTO jsg_user
+            (user_name, nick_name, phone_number, gender, email_address, address_id, create_time)
+        SELECT #{userName,jdbcType=VARCHAR},
+               #{nickName,jdbcType=VARCHAR},
+               #{phoneNumber,jdbcType=VARCHAR},
+               #{gender,jdbcType=BIT},
+               #{emailAddress,jdbcType=VARCHAR},
+               #{addressId,jdbcType=INTEGER},
+               #{createTime,jdbcType=TIMESTAMP}
+          FROM dual
+         WHERE NOT EXISTS(SELECT 1
+                            FROM jsg_user
+                           WHERE user_name = #{userName})
+    </insert>
+
+    <!-- SELECT查询语句使用 字段名、表名、查询条件对齐 -->
+    <!-- 配置参数使用：#{}，严禁使用${} 此种方式容易出现 SQL注入危险系数顶级-->
+    <select id="detail" resultType="com.style.guide.web.model.dto.UserDetailDTO">
+        SELECT user_id AS userId,
+               user_name AS userName,
+               nick_name AS nickName,
+               phone_number AS phoneNumber,
+               gender AS gender,
+               birth_date AS birthDate,
+               email_address AS emailAddress,
+               create_time AS createTime
+          FROM jsg_user
+         WHERE userId = #{userId}
+    </select>
+
+    <select id="list" resultType="com.style.guide.web.model.dto.UserBriefDTO">
+        SELECT user_id AS userId,
+               user_name AS userName,
+               nick_name AS nickName,
+               phone_number AS phoneNumber
+          FROM jsg_user
+         WHERE (user_name LIKE CONCAT(#{keyword}, '%')
+                OR nick_name LIKE CONCAT(#{keyword}, '%')
+                OR phone_number LIKE CONCAT(#{keyword}, '%'))
+    </select>
+
+    <update id="update" parameterType="com.style.guide.web.model.domain.UserDO">
+        UPDATE jsg_user
+        <set>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                nick_name = #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneNumber != null">
+                phone_number = #{phoneNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=BIT},
+            </if>
+            <if test="emailAddress != null">
+                email_address = #{emailAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="addressId != null">
+                address_id = #{addressId,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        WHERE user_id = #{userId,jdbcType=INTEGER}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        DELETE FROM jsg_user
+         WHERE user_id = #{userId,jdbcType=INTEGER}
+    </delete>
+
+</mapper>

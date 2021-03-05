@@ -1,0 +1,26 @@
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.2.14:3306/tmp?useUnicode=true&character_set_server=utf8mb4
+    username: tmp
+    password: dev123456
+    hikari:
+      maximumPoolSize: 10
+      minimumIdle: 2
+      idleTimeout: 60000
+      connectionTimeout: 3000
+      maxLifetime: 180000
+
+logging:
+  level:
+    com:
+      style:
+        guide: debug
