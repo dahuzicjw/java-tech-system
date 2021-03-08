@@ -1,0 +1,49 @@
+###################### Filebeat Configuration Example #########################
+
+# This file is an example configuration file highlighting only the most common
+# options. The filebeat.reference.yml file from the same directory contains all the
+# supported options with more comments. You can use it as a reference.
+#
+# You can find the full configuration reference here:
+# https://www.elastic.co/guide/en/beats/filebeat/index.html
+
+# For more available modules and options, please see the filebeat.reference.yml sample
+# configuration file.
+
+#=========================== Filebeat prospectors =============================
+
+filebeat.inputs:
+
+- type: log
+  enabled: true
+  paths:
+    - /storage/logs/*/*.log
+  field:
+    log_source: nginx
+
+#filebeat.config.modules:
+#  path: ${path.config}/modules.d/*.yml
+#  reload.enabled: false
+
+#==================== Elasticsearch template setting ==========================
+
+#setup.template.settings:
+#  index.number_of_shards: 3
+  #index.codec: best_compression
+  #_source.enabled: false
+
+#output.logstash:
+#  hosts: ["192.168.2.14:5044"]
+
+output.kafka:
+  # initial brokers for reading cluster metadata
+  hosts: [ "192.168.1.200:9093", "192.168.1.200:9094", "192.168.1.200:9095" ]
+
+  # message topic selection + partitioning
+  topic: 'app-log'
+  partition.round_robin:
+    reachable_only: false
+
+  required_acks: 1
+  compression: gzip
+  max_message_bytes: 1000000

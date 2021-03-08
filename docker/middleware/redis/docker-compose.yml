@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  redis:
+    image: redis:5.0.9
+    container_name: redis
+    restart: always
+    command: redis-server --requirepass 1qaz2wsx --appendonly yes
+    environment:
+      REDIS_REPLICATION_MODE: master
+    ports:
+      - '6379:6379'
+    expose:
+      - '6379'
+    volumes:
+      - /storage/data/redis:/data
