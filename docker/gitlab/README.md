@@ -17,6 +17,11 @@ docker logs -f gitlab --tail 500
 
 ## 修改/etc/gitlab/gitlab.rb
 ```
+修改git clone URL地址显示
+external_url 'https://git.xxx.com'
+```
+
+```
 gitlab_rails['omniauth_enabled'] = true
 gitlab_rails['omniauth_block_auto_created_users'] = false
 gitlab_rails['omniauth_allow_single_sign_on'] = true
