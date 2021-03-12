@@ -13,7 +13,6 @@ docker run --name=keycloak -dit -p 9990:9990 -p 19999:8080 \
     -e JDBC_PARAMS="connectTimeout=30000" \
     jboss/keycloak
 docker logs -f keycloak
-
 ```
 
 
@@ -25,3 +24,6 @@ https://www.debyum.com/configure-gitlab-with-keycloak/
 
 # Atlassian Jira Confluence
 https://plugins.miniorange.com/oauth-openid-single-sign-on-sso-jira-using-keycloak
+
+# Nginx
+https://developers.redhat.com/blog/2018/10/08/configuring-nginx-keycloak-oauth-oidc/

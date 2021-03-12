@@ -17,7 +17,7 @@ docker logs -f es
 docker stop kibana
 docker rm kibana
 docker run --name kibana -dt --net elastic -p 5601:5601 \
-    -e SERVER_NAME=kibana.zimocloud.com \
+    -e SERVER_NAME=kibana.xxx.com \
     -e ELASTICSEARCH_HOSTS=http://192.168.8.218:9200 \
     kibana:7.9.3
 docker logs -f kibana

@@ -44,6 +44,12 @@ gitlab_rails['omniauth_providers'] = [
 ]
 ```
 
+## 配置命令
+```
+配置gitlab-ctl reconfigure
+重启 gitlab-ctl start
+```
+
 ## 设置退出登录，不设置会导致退出后cookie未清除，可以不输入账号密码登录
 - Admin Settings under "General" subsection "Sign-in restrictions" field "After sign out path"
 - https://sso.example.com/auth/realms/<realm>/protocol/openid-connect/logout?redirect_uri=https://git.example.com
