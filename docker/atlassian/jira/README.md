@@ -34,8 +34,8 @@ https://qinjiangbo.com/https-to-confluence-via-nginx-web-server.html
 java -jar /opt/atlassian/jira/atlassian-agent.jar -m xxx@xxx.com -n xxx.com -p jc -o https://jira.xxx.com -s BWXU-NDD0-EEU0-RVV9
 2. 设置-应用程序-版本和许可证
 java -jar /opt/atlassian/jira/atlassian-agent.jar -m xxx@xxx.com -n xxx.com -p jira -o https://jira.xxx.com -s BWXU-NDD0-EEU0-RVV9
-3. 安装常用插件-roadmaps，立即购买，正常安装流程，管理，破解
-java -jar /opt/atlassian/jira/atlassian-agent.jar -m xxx@xxx.com -n xxx.com -p com.radiantminds.roadmaps-jira -o https://jira.xxx.com -s BWXU-NDD0-EEU0-RVV9
+3. 安装常用插件-easy-agile-roadmaps，立即购买，正常安装流程，管理
+java -jar /opt/atlassian/jira/atlassian-agent.jar -m xxx@xxx.com -n xxx.com -p com.arijea.easy-agile-roadmaps -o https://jira.xxx.com -s BWXU-NDD0-EEU0-RVV9
 4. SSO单点登录插件 OAuth/OpenID Connect (OIDC) for Confluence SSO
 java -jar /opt/atlassian/jira/atlassian-agent.jar -m xxx@xxx.com -n xxx.com -p com.miniorange.oauth.jira-oauth -o https://jira.xxx.com -s BWXU-NDD0-EEU0-RVV9
 - Xray测试用例插件Xray Test Management for Jira
