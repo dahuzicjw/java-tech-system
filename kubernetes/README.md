@@ -26,3 +26,17 @@ kubeadm init \
 --image-repository registry.aliyuncs.com/google_containers \
 --pod-network-cidr=10.244.0.0/16
 ```
+
+### 配置别名和自动补全
+打开当前用户.bashrc文件，粘贴以下内容
+```
+# 配置别名为 k
+alias k=kubectl
+# 设置自动补全
+source <(kubectl completion bash)
+source <(kubectl completion bash | sed s/kubectl/k/g)
+```
+source ~/.bashrc  
+安装bash-completion、执行bash_completion  
+yum install bash-completion -y  
+source /usr/share/bash-completion/bash_completion
